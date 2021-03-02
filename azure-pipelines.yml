@@ -59,4 +59,4 @@ Settings
 - task: PublishBuildArtfacts@1
   inputs:
     artifactName: 'MobEAD'
-    pathToPublish 'd:\a\1\a'
+    pathToPublish: 'd:\a\1\a'
