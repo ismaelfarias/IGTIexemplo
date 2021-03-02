@@ -1,0 +1,62 @@
+# ASP.NET Core (.NET Framework)
+# Build and test ASP.NET Core projects targeting the full .NET Framework.
+# Add steps that publish symbols, save build artifacts, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
+
+trigger:
+- master
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  solution: '**/*.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+
+steps:
+
+# Command line
+# Run a command line script using Bash on Linux and MackOS and cmd on Windows
+
+Settings
+- task: CmdLIne@2
+  inputs:
+    script: 'mkdir d:\a\1\MobEAD'
+    #WorkingDirectory: # Optional
+    #failOnStderr: false # Optional
+
+Settings
+- task: NuGetToolInstaller@1
+
+Settings
+- task: NuGetCommand@2
+  inputs:
+    restoreSolution: '$(solution)'
+
+Settings
+- task: VSBuild@1
+  inputs:
+    solution: '$(solution)'
+    msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:DesktopBuildPackageLocation="$(build.artifactStagingDirectory)\WebApp.zip" /p:DeployIisAppPath="Default Web Site"'
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'
+
+Settings
+- task: VSTest@2
+  inputs:
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'
+    testAssemblyVer2: '$(Build.SourcesDirectory)/test**.js'
+
+Settings
+- task: CopyFiles@2
+  inputs:
+    contents: '**/*.*'
+    targetFolder: $(build.artifactStagingDirectory)
+
+Settings
+- task: PublishBuildArtfacts@1
+  inputs:
+    artifactName: 'MobEAD'
+    pathToPublish 'd:\a\1\a'
