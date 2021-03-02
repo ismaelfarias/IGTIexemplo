@@ -46,7 +46,7 @@ steps:
     contents: '**/*.*'
     targetFolder: $(build.artifactStagingDirectory)
 
-- task: PublishBuildArtfacts@1
+- task: PublishBuildArtifacts@1
   inputs:
     artifactName: 'MobEAD'
-    pathToPublish 'd:\a\1\a'
+    pathToPublish: 'd:\a\1\a'
