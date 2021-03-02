@@ -14,7 +14,7 @@ variables:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
-steps:
+steps: 
 
 # Command line
 # Run a command line script using Bash on Linux and MackOS and cmd on Windows
@@ -59,4 +59,4 @@ Settings
 - task: PublishBuildArtfacts@1
   inputs:
     artifactName: 'MobEAD'
-    pathToPublish: 'd:\a\1\a'
+    pathToPublish 'd:\a\1\a'
