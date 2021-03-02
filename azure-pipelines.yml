@@ -21,15 +21,13 @@ steps:
     #WorkingDirectory: # Optional
     #failOnStderr: false # Optional
 
-Settings
 - task: NuGetToolInstaller@1
 
-Settings
+
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '$(solution)'
 
-Settings
 - task: VSBuild@1
   inputs:
     solution: '$(solution)'
@@ -37,20 +35,17 @@ Settings
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
-Settings
 - task: VSTest@2
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
     testAssemblyVer2: '$(Build.SourcesDirectory)/test**.js'
 
-Settings
 - task: CopyFiles@2
   inputs:
     contents: '**/*.*'
     targetFolder: $(build.artifactStagingDirectory)
 
-Settings
 - task: PublishBuildArtfacts@1
   inputs:
     artifactName: 'MobEAD'
