@@ -20,7 +20,7 @@ steps:
 # Run a command line script using Bash on Linux and MackOS and cmd on Windows
 
 Settings
-- task: CmdLIne@2
+- task: CmdLine@2
   inputs:
     script: 'mkdir d:\a\1\MobEAD'
     #WorkingDirectory: # Optional
